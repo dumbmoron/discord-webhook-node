@@ -1,7 +1,7 @@
 {
-  "name": "discord-webhook-node",
-  "version": "1.1.8",
-  "description": "Allows for easy webhook sending through discord's webhook API",
+  "name": "discordwebhook",
+  "version": "1.0.0",
+  "description": "library for sending messages through discord's webhook API",
   "main": "./src/index.js",
   "exports": {
     "import": "./src/index.mjs",
@@ -11,14 +11,14 @@
   "scripts": {
     "test": "mocha --timeout 50000"
   },
-  "author": "Matthew Mulfinger",
+  "author": "dumbmoron <log@riseup.net>",
   "license": "MIT",
   "keywords": [
     "Webhook",
     "Discord",
     "Bot"
   ],
-  "homepage": "https://github.com/matthew1232/discord-webhook-node#readme",
+  "homepage": "https://github.com/dumbmoron/discordwebhook#readme",
   "dependencies": {},
   "devDependencies": {
     "dotenv": "^8.2.0",
