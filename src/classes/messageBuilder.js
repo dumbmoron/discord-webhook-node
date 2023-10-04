@@ -1,95 +1,79 @@
-const { formatColor } = require('../utils');
+const { formatColor } = require('../utils')
 
 module.exports = class MessageBuilder {
-    constructor(){
+    constructor() {
         this.payload = {
-            embeds: [{fields: []}]
-        };
-    };
-
-    getJSON(){
-        return this.payload;
-    };
-
-    setText(text){
-        this.payload.content = text;
-
-        return this;
+            embeds: [ { fields: [] } ]
+        }
     }
 
-    setAuthor(author, authorImage, authorUrl){
-        this.payload.embeds[0].author = {};
-        this.payload.embeds[0].author.name = author;
-        this.payload.embeds[0].author.url = authorUrl;   
-        this.payload.embeds[0].author.icon_url = authorImage;  
-         
-        return this;
-    };
+    getJSON() { return this.payload }
 
-    setTitle(title){
-        this.payload.embeds[0].title = title;
+    setText(text) {
+        this.payload.content = text
+        return this
+    }
 
-        return this;
-    };
+    setAuthor(author, authorImage, authorUrl) {
+        this.payload.embeds[0].author = {}
+        this.payload.embeds[0].author.name = author
+        this.payload.embeds[0].author.url = authorUrl
+        this.payload.embeds[0].author.icon_url = authorImage
+        return this
+    }
 
-    setURL(url){
-        this.payload.embeds[0].url = url;
+    setTitle(title) {
+        this.payload.embeds[0].title = title
+        return this
+    }
 
-        return this;
-    };
+    setURL(url) {
+        this.payload.embeds[0].url = url
+        return this
+    }
 
-    setThumbnail(thumbnail){
-        this.payload.embeds[0].thumbnail = {};
-        this.payload.embeds[0].thumbnail.url = thumbnail;
+    setThumbnail(thumbnail) {
+        this.payload.embeds[0].thumbnail = {}
+        this.payload.embeds[0].thumbnail.url = thumbnail
+        return this
+    }
 
-        return this;
-    };
+    setImage(image) {
+        this.payload.embeds[0].image = {}
+        this.payload.embeds[0].image.url = image
+        return this
+    }
 
-    setImage(image){
-        this.payload.embeds[0].image = {};
-        this.payload.embeds[0].image.url = image;
+    setTimestamp(date) {
+        if (date) this.payload.embeds[0].timestamp = date
+        else this.payload.embeds[0].timestamp = new Date()
+        return this
+    }
 
-        return this;
-    };
+    setColor(color) {
+        this.payload.embeds[0].color = formatColor(color)
+        return this
+    }
 
-    setTimestamp(date){
-        if (date){
-            this.payload.embeds[0].timestamp = date;
-        }
-        else {
-            this.payload.embeds[0].timestamp = new Date();
-        };
+    setDescription(description) {
+        this.payload.embeds[0].description = description
+        return this
+    }
 
-        return this;
-    };
-
-    setColor(color){
-        this.payload.embeds[0].color = formatColor(color);
-
-        return this;
-    };
-
-    setDescription(description){
-        this.payload.embeds[0].description = description;
-
-        return this;
-    };
-
-    addField(fieldName, fieldValue, inline){
+    addField(fieldName, fieldValue, inline) {
         this.payload.embeds[0].fields.push({
             name: fieldName,
             value: fieldValue,
             inline: inline
-        });
+        })
+        return this
+    }
 
-        return this;
-    };
+    setFooter(footer, footerImage) {
+        this.payload.embeds[0].footer = {}
+        this.payload.embeds[0].footer.icon_url = footerImage
+        this.payload.embeds[0].footer.text = footer
+        return this
+    }
 
-    setFooter(footer, footerImage){
-        this.payload.embeds[0].footer = {};
-        this.payload.embeds[0].footer.icon_url = footerImage;
-        this.payload.embeds[0].footer.text = footer;
-
-        return this;
-    };
-};
+}

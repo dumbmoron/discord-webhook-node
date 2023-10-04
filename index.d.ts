@@ -1,11 +1,9 @@
 export type WebhookOptions = {
-  url: string;
-  throwErrors?: boolean;
-  retryOnLimit?: boolean;
+  url: string
 };
 
 export class Webhook {
-  constructor(options: string | WebhookOptions);
+  constructor(url: string);
   setUsername(username: string): void;
   setAvatar(avatar: string): void;
   sendFile(filePath: string): Promise<void>;

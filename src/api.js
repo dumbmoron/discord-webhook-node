@@ -8,21 +8,31 @@ const sendWebhook = (hookURL, payload) => fetch(hookURL, {
     body: JSON.stringify(payload)
 })
 
-const sendFile = (hookURL, file, { username, avatar_url }) => new Promise((resolve, reject) => {
+const sendStream = (hookURL, stream, filename, params) => {
     const form = new FormData();
 
-    if (username) form.append('username', username);
-    if (avatar_url) form.append('avatar_url', avatar_url);
+    for (const param of ['username', 'content', 'avatar_url'])
+        if (params[param])
+            form.append(param, params[param]);
 
-    form.append('file', fs.createReadStream(file));
-    
-    form.submit(hookURL, (error, response) => {
-        if (error) reject(error);
-        else resolve(response);
+    form.append('files[0]', {
+        [Symbol.toStringTag]: 'File',
+        name: filename,
+        stream: () => stream
     });
-});
+
+    return fetch(hookURL, {
+        method: 'POST',
+        body: form
+    });
+}
+
+const sendFile = (hookUrl, file, params = {}) => {
+    return sendStream(hookUrl, fs.createReadStream(file), file, params);
+}
 
 module.exports = {
     sendFile,
+    sendStream,
     sendWebhook
-};
+}
