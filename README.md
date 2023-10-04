@@ -1,8 +1,5 @@
-# Discord Webhook sending
-![version](https://img.shields.io/npm/v/discord-webhook-node "Version")
-![npm](https://img.shields.io/npm/dt/discord-webhook-node.svg "Total Downloads")
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/matthew1232/discord-webhook-node.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/matthew1232/discord-webhook-node/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/matthew1232/discord-webhook-node.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/matthew1232/discord-webhook-node/context:javascript)
+# discordwebhook
+[npm](https://npmjs.com/package/discordwebhook)
 
 - [Installation](#installation)
 - [Examples](#examples)
@@ -18,17 +15,17 @@
 - [License](#license)
 
 # Installation
-```npm install discord-webhook-node``` or ```yarn add discord-webhook-node```
+```npm install discordwebhook``` or ```yarn add discordwebhook```
 
 # Examples
 
 ## Basic use
 ```js
-const { Webhook } = require('discord-webhook-node');
+const { Webhook } = require('discordwebhook');
 const hook = new Webhook("YOUR WEBHOOK URL");
 
 const IMAGE_URL = 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
-hook.setUsername('Discord Webhook Node Name');
+hook.setUsername('Webhook Node Name');
 hook.setAvatar(IMAGE_URL);
 
 hook.send("Hello there!");
@@ -36,21 +33,21 @@ hook.send("Hello there!");
 
 ## Custom embeds
 ```js
-const { Webhook, MessageBuilder } = require('discord-webhook-node');
+const { Webhook, MessageBuilder } = require('discordwebhook');
 const hook = new Webhook("YOUR WEBHOOK URL");
 
 const embed = new MessageBuilder()
-.setTitle('My title here')
-.setAuthor('Author here', 'https://cdn.discordapp.com/embed/avatars/0.png', 'https://www.google.com')
-.setURL('https://www.google.com')
-.addField('First field', 'this is inline', true)
-.addField('Second field', 'this is not inline')
-.setColor('#00b0f4')
-.setThumbnail('https://cdn.discordapp.com/embed/avatars/0.png')
-.setDescription('Oh look a description :)')
-.setImage('https://cdn.discordapp.com/embed/avatars/0.png')
-.setFooter('Hey its a footer', 'https://cdn.discordapp.com/embed/avatars/0.png')
-.setTimestamp();
+                    .setTitle('My title here')
+                    .setAuthor('Author here', 'https://cdn.discordapp.com/embed/avatars/0.png', 'https://www.google.com')
+                    .setURL('https://www.google.com')
+                    .addField('First field', 'this is inline', true)
+                    .addField('Second field', 'this is not inline')
+                    .setColor('#00b0f4')
+                    .setThumbnail('https://cdn.discordapp.com/embed/avatars/0.png')
+                    .setDescription('Oh look a description :)')
+                    .setImage('https://cdn.discordapp.com/embed/avatars/0.png')
+                    .setFooter('Hey its a footer', 'https://cdn.discordapp.com/embed/avatars/0.png')
+                    .setTimestamp();
 
 hook.send(embed);
 ```
@@ -59,7 +56,7 @@ Keep in mind that the custom embed method `setColor` takes in a decimal color/a 
 
 ## Sending files
 ```js
-const { Webhook } = require('discord-webhook-node');
+const { Webhook } = require('discordwebhook');
 const hook = new Webhook('YOUR WEBHOOK URL');
 
 hook.sendFile('../yourfilename.png');
@@ -67,7 +64,7 @@ hook.sendFile('../yourfilename.png');
 
 ## Preset messages
 ```js
-const { Webhook } = require('discord-webhook-node');
+const { Webhook } = require('discordwebhook');
 const hook = new Webhook('YOUR WEBHOOK URL');
 
 //Sends an information message
@@ -85,42 +82,35 @@ hook.error('**Error hook**', 'Error field title here', 'Error field value here')
 
 ## Custom settings
 ```js
-const { Webhook } = require('discord-webhook-node');
-const hook = new Webhook({
-    url: "YOUR WEBHOOK URL",
-    //If throwErrors is set to false, no errors will be thrown if there is an error sending
-    throwErrors: false,
-    //retryOnLimit gives you the option to not attempt to send the message again if rate limited
-    retryOnLimit: false
-});
+const { Webhook } = require('discordwebhook');
+const hook = new Webhook("https://discord.com/api/webhooks/...");
 
-hook.setUsername('Username'); //Overrides the default webhook username
+hook.setUsername('Username'); // Overrides the default webhook username
 hook.setAvatar('YOUR_AVATAR_URL'); //Overrides the default webhook avatar
 ```
 
 # Notes
-discord-webhook-node is a promise based library, which means you can use `.catch`, `.then`, and `await`, although if successful will not return any values. For example:
+discordwebhook is a promise based library, which means you can use `.catch`, `.then`, and `await`, although if successful will not return any values. For example:
 
 ```js
-const { Webhook } = require('discord-webhook-node');
+const { Webhook } = require('discordwebhook');
 const hook = new Webhook("YOUR WEBHOOK URL");
 
 hook.send("Hello there!")
-.then(() => console.log('Sent webhook successfully!'))
-.catch(err => console.log(err.message));
+    .then(() => console.log('Sent webhook successfully!'))
+    .catch(err => console.log(err.message));
 ```
 
 or using async:
 ```js
-const { Webhook } = require('discord-webhook-node');
+const { Webhook } = require('discordwebhook');
 const hook = new Webhook("YOUR WEBHOOK URL");
 
 (async () => {
     try {
         await hook.send('Hello there!');
         console.log('Successfully sent webhook!');
-    }
-    catch(e){
+    } catch(e) {
         console.log(e.message);
     };
 })();
@@ -131,9 +121,7 @@ By default, it will handle Discord's rate limiting, and if there is an error sen
 # API
 ## Webhook - class
 Constructor
-- options (optional) : object
-    - throwErrors (optional) : boolean
-    - retryOnLimit (optional) : boolean
+- url : string
 
 Methods
 - setUsername(username : string) returns this
@@ -144,7 +132,7 @@ Methods
 - async success(title : string, fieldName (optional) : string, fieldValue (optional) : string, inline (optional) : boolean)
 - async warning(title : string, fieldName (optional) : string, fieldValue (optional) : string, inline (optional) : boolean)
 - async error(title : string, fieldName (optional) : string, fieldValue (optional) : string, inline (optional) : boolean)
-- 
+
 ## MessageBuilder - class
 Methods
 - setText(text: string)
@@ -158,7 +146,3 @@ Methods
 - setDescription(description : string)
 - addField(fieldName : string, fieldValue: string, inline (optional) : boolean)
 - setFooter(footer : string, footerImage (optional) : string (image url))
-
-# License
-
-MIT
