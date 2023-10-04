@@ -1,5 +1,5 @@
-# discordwebhook
-[npm](https://npmjs.com/package/discordwebhook)
+# @dumbmoron/discordwebhook
+[npm](https://npmjs.com/package/@dumbmoron/discordwebhook)
 
 - [Installation](#installation)
 - [Examples](#examples)
@@ -15,13 +15,13 @@
 - [License](#license)
 
 # Installation
-```npm install discordwebhook``` or ```yarn add discordwebhook```
+```npm install @dumbmoron/discordwebhook``` or ```yarn add @dumbmoron/discordwebhook```
 
 # Examples
 
 ## Basic use
 ```js
-const { Webhook } = require('discordwebhook');
+const { Webhook } = require('@dumbmoron/discordwebhook');
 const hook = new Webhook("YOUR WEBHOOK URL");
 
 const IMAGE_URL = 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
@@ -33,7 +33,7 @@ hook.send("Hello there!");
 
 ## Custom embeds
 ```js
-const { Webhook, MessageBuilder } = require('discordwebhook');
+const { Webhook, MessageBuilder } = require('@dumbmoron/discordwebhook');
 const hook = new Webhook("YOUR WEBHOOK URL");
 
 const embed = new MessageBuilder()
@@ -56,7 +56,7 @@ Keep in mind that the custom embed method `setColor` takes in a decimal color/a 
 
 ## Sending files
 ```js
-const { Webhook } = require('discordwebhook');
+const { Webhook } = require('@dumbmoron/discordwebhook');
 const hook = new Webhook('YOUR WEBHOOK URL');
 
 hook.sendFile('../yourfilename.png');
@@ -64,7 +64,7 @@ hook.sendFile('../yourfilename.png');
 
 ## Preset messages
 ```js
-const { Webhook } = require('discordwebhook');
+const { Webhook } = require('@dumbmoron/discordwebhook');
 const hook = new Webhook('YOUR WEBHOOK URL');
 
 //Sends an information message
@@ -82,7 +82,7 @@ hook.error('**Error hook**', 'Error field title here', 'Error field value here')
 
 ## Custom settings
 ```js
-const { Webhook } = require('discordwebhook');
+const { Webhook } = require('@dumbmoron/discordwebhook');
 const hook = new Webhook("https://discord.com/api/webhooks/...");
 
 hook.setUsername('Username'); // Overrides the default webhook username
@@ -90,10 +90,10 @@ hook.setAvatar('YOUR_AVATAR_URL'); //Overrides the default webhook avatar
 ```
 
 # Notes
-discordwebhook is a promise based library, which means you can use `.catch`, `.then`, and `await`, although if successful will not return any values. For example:
+@dumbmoron/discordwebhook is a promise based library, which means you can use `.catch`, `.then`, and `await`, although if successful will not return any values. For example:
 
 ```js
-const { Webhook } = require('discordwebhook');
+const { Webhook } = require('@dumbmoron/discordwebhook');
 const hook = new Webhook("YOUR WEBHOOK URL");
 
 hook.send("Hello there!")
@@ -103,7 +103,7 @@ hook.send("Hello there!")
 
 or using async:
 ```js
-const { Webhook } = require('discordwebhook');
+const { Webhook } = require('@dumbmoron/discordwebhook');
 const hook = new Webhook("YOUR WEBHOOK URL");
 
 (async () => {

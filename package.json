@@ -1,5 +1,5 @@
 {
-  "name": "discordwebhook",
+  "name": "@dumbmoron/discordwebhook",
   "version": "0.0.1",
   "description": "library for sending messages through discord's webhook API",
   "main": "./src/index.js",
