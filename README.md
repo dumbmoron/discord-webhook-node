@@ -1,4 +1,8 @@
 # @dumbmoron/discordwebhook
+fork of [@matthew1232/discord-webhook-node](https://github.com/matthew1232/discord-webhook-node#readme) that uses native node.js fetch (aka undici) and has no dependencies
+
+recommended node version: >=19
+
 [npm](https://npmjs.com/package/@dumbmoron/discordwebhook)
 
 - [Installation](#installation)
