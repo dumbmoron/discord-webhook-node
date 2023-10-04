@@ -1,6 +1,6 @@
 {
   "name": "discordwebhook",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "library for sending messages through discord's webhook API",
   "main": "./src/index.js",
   "exports": {
