@@ -6,9 +6,9 @@ const { WEBHOOK_URL } = process.env;
 
 const hook = new Webhook(WEBHOOK_URL);
 
-const IMAGE_URL = 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
+const IMAGE_URL = 'https://cdn.discordapp.com/emojis/1106622730046017607.png';
 
-hook.setUsername('Discord Webhook Node Name');
+hook.setUsername('Webhook Node Name');
 hook.setAvatar(IMAGE_URL);
 
 describe('Custom hooks', function(){
@@ -35,12 +35,10 @@ describe('Custom hooks', function(){
 
     it('Sends file', function(done){
         fs.writeFile('./test/customfile.txt', 'Message from discord-webhook-node').then(() => {
-            hook.sendFile('./test/customfile.txt').then(() => {
-                fs.unlink('./test/customfile.txt');
-
-                done();
-            })
-            .catch(err => done(err));
+            hook.sendFile('./test/customfile.txt')
+                .then(() => done())
+                .catch(err => done(err))
+                .finally(() => fs.unlink('./test/customfile.txt'))
         })
         .catch(err => done(err));
     });
